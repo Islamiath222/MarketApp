@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@marketapp/types": ["./packages/types/src/index.ts"],
+      "@marketapp/ui": ["./packages/ui/src/index.ts"],
+      "@marketapp/api-client": ["./packages/api-client/src/index.ts"],
+      "@marketapp/config/*": ["./packages/config/*"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules", "**/dist", "**/.next"]
+}

@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "MarketApp",
+    "slug": "marketapp",
+    "version": "1.0.0",
+    "scheme": "marketapp",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0F1A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.marketapp.mobile"
+    },
+    "android": {
+      "package": "com.marketapp.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#0D0F1A",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "statusBar": {
+        "backgroundColor": "#0D0F1A",
+        "barStyle": "light-content"
+      },
+      "predictiveBackGestureEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
+

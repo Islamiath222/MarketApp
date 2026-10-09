@@ -1,0 +1,12 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@marketapp/types": ["../../packages/types/src/index.ts"],
+      "@marketapp/api-client": ["../../packages/api-client/src/index.ts"],
+      "@marketapp/api-client/*": ["../../packages/api-client/*"]
+    }
+  }
+}

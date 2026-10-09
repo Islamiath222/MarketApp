@@ -1,0 +1,30 @@
+{
+  "name": "marketapp",
+  "private": true,
+  "version": "0.1.0",
+  "description": "MarketApp — Digital marketplace and navigation platform for physical markets",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "dev:mobile": "turbo dev --filter=@marketapp/mobile",
+    "dev:web": "turbo dev --filter=@marketapp/web",
+    "dev:seller": "turbo dev --filter=@marketapp/seller-portal",
+    "dev:market-admin": "turbo dev --filter=@marketapp/market-admin",
+    "dev:platform-admin": "turbo dev --filter=@marketapp/platform-admin",
+    "dev:api": "turbo dev --filter=@marketapp/api",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.12.3"
+}
