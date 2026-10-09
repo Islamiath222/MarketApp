@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
-  SafeAreaView,
   StatusBar,
   Modal,
   Dimensions,
@@ -190,7 +189,7 @@ export default function App() {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0D0F1A" translucent={false} />
 
       {/* App Header (Shown on main app screens) */}
@@ -1065,7 +1064,7 @@ export default function App() {
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 }
 
