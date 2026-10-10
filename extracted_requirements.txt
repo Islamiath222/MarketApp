@@ -1,0 +1,1913 @@
+MarketApp 
+
+ Product Requirements
+Document 
+
+ Mobile App  Website 
+Seller Portal  Market Administration  360° Navigation 
+
+ A
+ digital platform for discovering, navigating and transacting with verified
+ physical market stalls  beginning in Lagos, Nigeria. 
+
+ Core
+experience 
+
+ Market &#8594; Virtual
+Market &#8594; Shop &#8594; Seller &#8594; Negotiation &#8594; Order &#8594;
+Payment &#8594; Delivery/Pickup &#8594; Rating 
+
+ Prepared as
+the consolidated baseline specification for product design, system
+architecture, development planning and vendor estimation. 
+
+### H1: 1. Product Vision and Scope 
+
+ MarketApp will be a digital marketplace and
+navigation platform for physical markets. The initial launch will focus on
+Lagos, Nigeria, while the architecture will support expansion to other Nigerian
+markets without redesigning the core platform. 
+
+ MarketApp will digitally map participating
+markets down to individual stalls. Customers will be able to enter a market
+virtually, navigate through proprietary 360° imagery, locate shops, browse
+products, communicate with shop owners, negotiate prices, pay for orders,
+select pickup or delivery, and rate completed transactions. 
+
+ Every
+ verified physical shop or stall should have one corresponding digital
+ storefront linked to its exact market location. 
+
+### H1: 2. Platform Components 
+
+ Component 
+
+ Primary Users 
+
+ Key Purpose 
+
+ Customer
+ & Seller Mobile App 
+
+ Customers,
+ shop owners, staff 
+
+ iOS/Android
+ discovery, 360° navigation, shopping, seller operations 
+
+ Public
+ Website 
+
+ Visitors
+ and customers 
+
+ Browse
+ markets, shops, products and selected virtual navigation; transact where
+ supported 
+
+ Seller
+ Web Dashboard 
+
+ Verified
+ merchants 
+
+ Catalog,
+ pricing, chat, offers, orders, fulfillment, ratings and analytics 
+
+ Market
+ Administration Portal 
+
+ Market
+ associations/management 
+
+ Validate
+ occupancy, assist with stall claims, report changes and map issues 
+
+ MarketApp
+ Admin Portal 
+
+ Platform
+ operations 
+
+ User,
+ seller, market, moderation, payments, disputes, risk, imagery and navigation
+ management 
+
+### H1: 3. Geographic and Market Scope 
+
+ · 
+ Initial launch geography: Lagos, Nigeria. 
+
+ · 
+ City-level map displays participating markets
+rather than unrelated properties or businesses. 
+
+ · 
+ Each market stores its boundary, entrances,
+operating hours, major categories, parking/loading points, transport access,
+shop/stall inventory, routing graph and 360° imagery. 
+
+ · 
+ Future hierarchy: Nigeria &#8594; State &#8594;
+City/LGA &#8594; Market &#8594; Zone/Building &#8594; Floor &#8594; Corridor
+&#8594; Stall. 
+
+### H1: 4. Market Discovery 
+
+### H2: 4.1 Market List 
+
+ · 
+ Searchable list of participating markets 
+
+ · 
+ Market name, location, summary and thumbnail 
+
+ · 
+ Major product categories 
+
+ · 
+ Number of mapped/verified shops 
+
+ · 
+ 360° navigation availability 
+
+ · 
+ Operating status 
+
+### H2: 4.2 Lagos Map 
+
+ · 
+ Map markers or boundaries for participating
+markets 
+
+ · 
+ Market preview card on selection 
+
+ · 
+ Enter Market action 
+
+ · 
+ Location, hours, categories, number of mapped
+shops and representative imagery 
+
+### H1: 5. In-Market Customer Experience 
+
+ Once the customer enters a market, the
+application transitions from city mapping to MarketApps proprietary
+market-level navigation environment. 
+
+ Entry Method 
+
+ Customer Action 
+
+ Search 
+
+ Search
+ shop name, product, category, brand, keyword or stall number 
+
+ Browse 
+
+ Browse
+ market or shop categories 
+
+ Explore
+ 360° 
+
+ Virtually
+ walk through connected panoramas and discover shops visually 
+
+ Navigate 
+
+ Select
+ a destination shop and follow a calculated route 
+
+### H1: 6. Proprietary 360° Imagery System 
+
+ MarketApp will own and operate the internal
+market imagery system. It should not depend on Google Street View for the core
+in-market experience. 
+
+### H2: 6.1 Field Capture 
+
+ · 
+ Capture 360° panoramas along major walkways at
+regular intervals 
+
+ · 
+ Capture at intersections, entrances, stairs,
+landmarks and near shops 
+
+ · 
+ Record panorama ID, market, zone/floor/corridor,
+X/Y coordinates, heading, capture date, adjacent panoramas and nearby shops 
+
+ · 
+ Maintain original protected image plus
+processed/public version 
+
+### H2: 6.2 Viewer Requirements 
+
+ · 
+ Swipe/drag to look around 
+
+ · 
+ Gyroscope support 
+
+ · 
+ Move forward/backward through linked panoramas 
+
+ · 
+ Turn and follow directional arrows 
+
+ · 
+ Mini-map and current position 
+
+ · 
+ Destination route overlay 
+
+ · 
+ Floor switching 
+
+ · 
+ Clickable shop and amenity hotspots 
+
+ · 
+ Navigate-to-shop and Enter Shop actions 
+
+### H1: 7. Physical Navigation and Indoor Positioning 
+
+ Because GPS may be unreliable inside dense
+or covered markets, MarketApp should use a market routing graph and multiple
+positioning methods. 
+
+ · 
+ Manual starting entrance selection 
+
+ · 
+ Landmark selection 
+
+ · 
+ MarketApp QR location markers 
+
+ · 
+ Future: Bluetooth beacons, Wi-Fi positioning,
+NFC, visual positioning and camera recognition 
+
+### H1: 8. Navigation Graph 
+
+ Object 
+
+ Examples / Attributes 
+
+ Navigation
+ Node 
+
+ Entrance,
+ corridor junction, staircase, elevator, landmark, exit, shop entrance 
+
+ Navigation
+ Edge 
+
+ Walkable
+ connection with distance, direction, floor, accessibility status and
+ temporary closure state 
+
+ Example route: Entrance 2 &#8594; Main
+Corridor &#8594; Junction B &#8594; Electronics Block &#8594; Corridor B4
+&#8594; Shop B14. 
+
+### H1: 9. Stall / Shop Master Data 
+
+ The physical stall must exist independently
+of its current business occupant so the map remains stable when tenancy
+changes. 
+
+ · 
+ Stall ID 
+
+ · 
+ Market/building/zone/block/floor/corridor 
+
+ · 
+ Stall number 
+
+ · 
+ Local X/Y coordinates 
+
+ · 
+ Geographic coordinates where relevant 
+
+ · 
+ Shop-facing direction 
+
+ · 
+ Closest navigation node and panorama 
+
+ · 
+ Stall photograph 
+
+ · 
+ Claim status and occupancy status 
+
+### H1: 10. User Accounts and Identity 
+
+ Both customers and shop owners must create
+an account. A single user account may hold multiple roles, allowing a merchant
+to also shop as a customer. 
+
+ · 
+ Full name 
+
+ · 
+ Unique verified email address 
+
+ · 
+ Unique verified phone number 
+
+ · 
+ Password or passkey 
+
+ · 
+ Terms and privacy acceptance 
+
+ · 
+ Account status, creation date and last login 
+
+ Email uniqueness and phone uniqueness must
+be enforced at the database level. Emails should be normalized before
+comparison. Phone numbers should be normalized to E.164 format (for example
++2348012345678). 
+
+### H1: 11. Roles and Permissions 
+
+ · 
+ Customer 
+
+ · 
+ Seller / Primary Merchant 
+
+ · 
+ Shop Manager 
+
+ · 
+ Catalog Manager 
+
+ · 
+ Sales Agent 
+
+ · 
+ Fulfillment Employee 
+
+ · 
+ Finance Administrator 
+
+ · 
+ Read-only shop staff 
+
+ · 
+ Market Representative 
+
+ · 
+ MarketApp Verification Agent 
+
+ · 
+ MarketApp Support 
+
+ · 
+ MarketApp Administrator 
+
+ Only authorized roles should be allowed to
+modify settlement information or other high-risk settings. 
+
+### H1: 12. Stall Claiming and Seller Verification 
+
+ A user cannot create an arbitrary shop
+location. The stall must first exist in the MarketApp market map, after which
+the user can request to claim it. 
+
+ 1. Create/verify user account 
+
+ 2. Select Claim This Shop/Stall 
+
+ 3. Complete seller identity/KYC verification 
+
+ 4. Provide evidence of association with the stall 
+
+ 5. Market representative confirmation where applicable 
+
+ 6. Payment/settlement account verification 
+
+ 7. MarketApp risk and manual review 
+
+ 8. Approve, reject or request additional evidence 
+
+ Claim Status 
+
+ Meaning 
+
+ Unclaimed 
+
+ No
+ approved merchant association 
+
+ Claim
+ submitted 
+
+ Application
+ received 
+
+ Identity
+ verification 
+
+ KYC
+ checks underway 
+
+ Market
+ verification 
+
+ Occupancy/association
+ confirmation 
+
+ Payment
+ verification 
+
+ Settlement
+ account checks 
+
+ Manual
+ review 
+
+ Platform
+ verification/risk review 
+
+ Approved 
+
+ Seller
+ may operate storefront 
+
+ Disputed 
+
+ Conflicting
+ claim requires review 
+
+ Suspended 
+
+ Temporary
+ restriction 
+
+ Closed 
+
+ Stall/business
+ no longer operating 
+
+### H2: 12.1 Seller Identity Verification 
+
+ · 
+ Legal name 
+
+ · 
+ Government-issued identification 
+
+ · 
+ Selfie/liveness where appropriate 
+
+ · 
+ Business registration information where
+applicable 
+
+ · 
+ Business/address information 
+
+ · 
+ Verified bank/settlement account 
+
+ · 
+ Market-association information 
+
+### H2: 12.2 Stall Association Evidence 
+
+ · 
+ Market association confirmation 
+
+ · 
+ Market-issued ID 
+
+ · 
+ Stall allocation or tenancy evidence 
+
+ · 
+ Rent receipt or lease 
+
+ · 
+ Field verification 
+
+ · 
+ Live video from stall 
+
+ · 
+ Shop-specific QR code 
+
+ · 
+ Photo with rotating verification code 
+
+ · 
+ Other market-specific evidence 
+
+### H1: 13. Digital Storefront 
+
+ · 
+ Shop name, description, logo and photos 
+
+ · 
+ Market, zone and stall number 
+
+ · 
+ Opening hours and current status 
+
+ · 
+ Verification badges 
+
+ · 
+ Public seller/shop rating 
+
+ · 
+ Number of completed transactions 
+
+ · 
+ Response and fulfillment metrics 
+
+ · 
+ Seller-created categories 
+
+ · 
+ Product catalog 
+
+ · 
+ Chat with Seller 
+
+ · 
+ Navigate to Shop 
+
+ Sensitive seller information such as
+government ID, personal email, personal phone, bank data and home address must
+not be displayed publicly. 
+
+### H1: 14. Seller-Created Categories and Platform Taxonomy 
+
+ Each shop controls its own catalog
+organization. Sellers may create, rename, reorder, hide or delete their own
+categories. In parallel, MarketApp maintains an internal platform taxonomy so
+search and analytics work consistently across shops. 
+
+ Seller Category Example 
+
+ Platform Mapping Example 
+
+ Original
+ UK Phones 
+
+ Electronics
+ &#8594; Mobile Phones &#8594; Smartphones 
+
+ Repairs 
+
+ Services
+ &#8594; Electronics Repair 
+
+ Ladies
+ Shoes 
+
+ Fashion
+ &#8594; Footwear &#8594; Women 
+
+### H1: 15. Product Listings and Inventory 
+
+ · 
+ Product ID and shop ID 
+
+ · 
+ Seller-created category and platform category 
+
+ · 
+ Product name and description 
+
+ · 
+ Images and optional video 
+
+ · 
+ Price and currency 
+
+ · 
+ Pricing mode: fixed, negotiable, or contact for
+price 
+
+ · 
+ Condition: new, used, refurbished, open-box,
+etc. 
+
+ · 
+ Quantity, unit, minimum order and variants 
+
+ · 
+ Warranty information 
+
+ · 
+ Pickup/delivery availability 
+
+ · 
+ Creation/modification timestamps 
+
+ · 
+ Product status and moderation status 
+
+ Inventory Status 
+
+ Use 
+
+ In
+ stock 
+
+ Available
+ now 
+
+ Limited
+ stock 
+
+ Low
+ quantity 
+
+ Available
+ on request 
+
+ Seller
+ can source after inquiry 
+
+ Out
+ of stock 
+
+ Temporarily
+ unavailable 
+
+ Preorder 
+
+ Future
+ availability 
+
+ Discontinued 
+
+ No
+ longer sold 
+
+### H1: 16. Search and Discovery 
+
+ · 
+ Search by shop name 
+
+ · 
+ Product name 
+
+ · 
+ Brand 
+
+ · 
+ Product category 
+
+ · 
+ Seller-created category 
+
+ · 
+ Stall number 
+
+ · 
+ Description and keywords 
+
+ · 
+ Market 
+
+ · 
+ Price and availability filters 
+
+ · 
+ Condition 
+
+ · 
+ Negotiable price 
+
+ · 
+ Rating 
+
+ · 
+ Delivery/pickup availability 
+
+ Search can operate within one shop, one
+market, multiple markets or eventually all participating Nigerian markets. 
+
+### H1: 17. Shop Discovery in 360° View 
+
+ Customers can discover shops by simply
+walking through the virtual market. Hotspots should dynamically load current
+shop information from the marketplace database rather than embedding changing
+prices into panorama image files. 
+
+ Example
+ hotspot: Adebayo Electronics  &#9733; 4.8  Verified Stall  Phones &
+ Accessories  [View Shop] [Chat] [Navigate Here] 
+
+### H1: 18. Customer-to-Shop Chat 
+
+ · 
+ Text messages 
+
+ · 
+ Images 
+
+ · 
+ Product cards/links 
+
+ · 
+ Voice notes 
+
+ · 
+ Structured offers and counteroffers 
+
+ · 
+ Shipping quotes 
+
+ · 
+ Read status 
+
+ · 
+ Block/report controls 
+
+ · 
+ System messages related to transactions 
+
+ · 
+ Future translation/audio/video features 
+
+ Chats should remain associated with the
+shop identity, not merely the individual employee responding. 
+
+### H1: 19. Haggling and Structured Offers 
+
+ Negotiation is a core feature. Customers
+and sellers may haggle naturally in chat, but the final agreed price must
+become a structured offer before payment. 
+
+ Action 
+
+ Customer / Seller Behavior 
+
+ Buy
+ at Listed Price 
+
+ Customer
+ accepts public price 
+
+ Make
+ an Offer 
+
+ Customer
+ proposes price and quantity 
+
+ Counter 
+
+ Seller
+ or customer proposes revised terms 
+
+ Accept 
+
+ Current
+ offer becomes binding checkout terms 
+
+ Decline 
+
+ Negotiation
+ ends or returns to chat 
+
+ A structured offer should contain the shop,
+product snapshot, quantity, original price, agreed unit price, shipping,
+platform charges if applicable, total, expiration time and status. Offer
+history must be immutable. 
+
+### H1: 20. Cart, Checkout and Order Creation 
+
+ For the initial release, each checkout
+should contain products from only one shop. Multi-shop checkout should be
+deferred because it complicates negotiation, payment splitting, shipping,
+refunds and disputes. 
+
+ · 
+ Create order from accepted structured offer or
+listed-price purchase 
+
+ · 
+ Store immutable product snapshot at purchase
+time 
+
+ · 
+ Show item totals, negotiated discount,
+delivery/pickup selection, fees and final total 
+
+ · 
+ Collect required delivery information only when
+delivery is selected 
+
+### H1: 21. Payments and Seller Settlement 
+
+ MarketApp should integrate with
+appropriately licensed Nigerian payment providers. The platform should avoid
+launching its own stored-value wallet initially. 
+
+ · 
+ Support provider-managed seller subaccounts or
+split payments where available 
+
+ · 
+ Record successful payment based on secure
+provider confirmation, not screenshots 
+
+ · 
+ Separate seller allocation, platform commission
+and provider charges 
+
+ · 
+ Maintain payment, refund and settlement history 
+
+ · 
+ Require strong verification for
+settlement-account changes 
+
+ Payment Status 
+
+ Examples 
+
+ Pending 
+
+ Checkout
+ created, not confirmed 
+
+ Processing 
+
+ Provider
+ processing 
+
+ Successful 
+
+ Payment
+ confirmed 
+
+ Failed 
+
+ Payment
+ declined/failed 
+
+ Refunded
+ / Partially Refunded 
+
+ Funds
+ returned 
+
+ Disputed 
+
+ Transaction
+ under dispute 
+
+ Reversed 
+
+ Provider
+ reversal 
+
+### H1: 22. Fulfillment, Pickup and Delivery 
+
+ · 
+ Customer pickup 
+
+ · 
+ Seller-arranged delivery 
+
+ · 
+ Market dispatch rider 
+
+ · 
+ Integrated courier 
+
+ · 
+ National logistics provider 
+
+### H2: 22.1 Pickup 
+
+ Pickup orders should generate a secure
+one-time code or QR code. The seller scans/enters the code when handing over
+the item, producing fulfillment evidence. 
+
+### H2: 22.2 Delivery 
+
+ · 
+ Recipient name and phone 
+
+ · 
+ Delivery address 
+
+ · 
+ State and LGA 
+
+ · 
+ Landmark and instructions 
+
+ · 
+ Courier/driver identity where applicable 
+
+ · 
+ Pickup timestamp 
+
+ · 
+ Delivery timestamp 
+
+ · 
+ Customer OTP/confirmation 
+
+ · 
+ Failed-delivery reason 
+
+### H1: 23. Order Lifecycle 
+
+ Offer
+ Accepted &#8594; Payment Pending &#8594; Paid &#8594; Seller Confirmed
+ &#8594; Preparing &#8594; Ready &#8594; Pickup/Courier &#8594; In Transit
+ &#8594; Delivered &#8594; Customer Confirmed &#8594; Completed 
+
+ Alternative states include Cancelled,
+Returned, Refunded and Disputed. 
+
+### H1: 24. Mutual Ratings and Reputation 
+
+ After a qualifying completed transaction,
+the customer may rate the shop and the shop may rate the customer. Ratings must
+be transaction-backed. 
+
+ · 
+ One review per party per qualifying transaction 
+
+ · 
+ Customer-to-seller/shop rating is public on the
+shop profile 
+
+ · 
+ Seller-to-customer rating is visible to sellers
+interacting with that customer but not publicly searchable 
+
+ · 
+ Overall 15 star score plus optional written
+review 
+
+ · 
+ Public shop reviews marked Verified Transaction 
+
+ · 
+ Seller may respond publicly to customer review 
+
+### H2: 24.1 Suggested Rating Dimensions 
+
+ Customer Rates Shop On 
+
+ Shop Rates Customer On 
+
+ Overall
+ experience 
+
+ Overall
+ experience 
+
+ Product
+ accuracy 
+
+ Communication 
+
+ Communication 
+
+ Reliability 
+
+ Value/pricing 
+
+ Pickup/payment
+ cooperation 
+
+ Fulfillment 
+
+ Respectful
+ conduct 
+
+ Professionalism 
+
+### H2: 24.2 Double-Blind Reviews 
+
+ Recommended: both reviews remain hidden
+until both sides submit, or until a 714 day review window expires. This
+reduces retaliatory ratings. 
+
+### H1: 25. Review Integrity 
+
+ · 
+ Cancelled orders normally cannot be reviewed 
+
+ · 
+ Reviews cannot be transferred between accounts 
+
+ · 
+ Historical reviews remain linked to the
+underlying transaction 
+
+ · 
+ Reviews may be reported for fraud, harassment,
+spam or personal information 
+
+ · 
+ Negative reviews are not removed simply because
+a seller objects 
+
+ · 
+ Monitor repeated tiny transactions, shared
+devices, rating clusters and abnormal review velocity 
+
+### H1: 26. Returns, Refunds and Disputes 
+
+ · 
+ Item not received 
+
+ · 
+ Wrong or damaged item 
+
+ · 
+ Item materially differs from listing 
+
+ · 
+ Counterfeit claim 
+
+ · 
+ Missing quantity 
+
+ · 
+ Late/failed delivery 
+
+ · 
+ Refund disagreement 
+
+ · 
+ Customer misconduct 
+
+ · 
+ Seller misconduct 
+
+ The dispute record should preserve the
+original product snapshot, offer history, chat, payment record, shipping/pickup
+evidence, images, both parties submissions, staff notes and final resolution.
+Relevant evidence must not be silently editable after a dispute begins. 
+
+### H1: 27. Fraud, Risk and Account Security 
+
+### H2: 27.1 Seller Risks 
+
+ · 
+ Claiming another traders stall 
+
+ · 
+ Fake or counterfeit products 
+
+ · 
+ Non-delivery 
+
+ · 
+ Stolen product photos 
+
+ · 
+ False inventory 
+
+ · 
+ Account takeover 
+
+ · 
+ Unauthorized bank-detail changes 
+
+ · 
+ Review manipulation 
+
+ · 
+ Repeat accounts after suspension 
+
+### H2: 27.2 Customer Risks 
+
+ · 
+ Fake accounts 
+
+ · 
+ Stolen payment credentials 
+
+ · 
+ False non-delivery claims 
+
+ · 
+ Chargeback abuse 
+
+ · 
+ Fraudulent returns 
+
+ · 
+ Harassment 
+
+ · 
+ Multiple-account abuse 
+
+ · 
+ Review manipulation 
+
+### H2: 27.3 Controls 
+
+ · 
+ Verified email and phone 
+
+ · 
+ Seller identity and stall verification 
+
+ · 
+ Two-factor authentication for sellers 
+
+ · 
+ Login alerts and session/device management 
+
+ · 
+ Device/risk scoring 
+
+ · 
+ Transaction limits and high-value review 
+
+ · 
+ Duplicate-account detection 
+
+ · 
+ Cooling period/risk review after
+settlement-account changes 
+
+ · 
+ Audit logs 
+
+ · 
+ Suspension and appeals workflows 
+
+### H1: 28. 360° Privacy and Image Governance 
+
+ · 
+ Automatic face blurring 
+
+ · 
+ Licence-plate blurring 
+
+ · 
+ Sensitive-content review 
+
+ · 
+ Public reporting/removal workflow 
+
+ · 
+ Restricted access to original unblurred imagery 
+
+ · 
+ Published privacy-safe derivatives 
+
+ · 
+ Capture date and version history 
+
+ · 
+ Quality status and publication status 
+
+ · 
+ Shop associations and navigation connections 
+
+ If a stall changes occupant, the physical
+stall remains in the map while the business association changes. Historical
+transactions and reviews remain attached to the relevant prior business where
+appropriate. 
+
+### H1: 29. Notifications 
+
+ Customer Notifications 
+
+ Seller Notifications 
+
+ Seller
+ reply / counteroffer 
+
+ New
+ chat / new offer 
+
+ Offer
+ accepted or expiring 
+
+ New
+ order 
+
+ Payment
+ successful 
+
+ Payment
+ confirmed 
+
+ Order
+ and delivery updates 
+
+ Pickup
+ / shipping request 
+
+ Review
+ available 
+
+ Customer
+ review 
+
+ Dispute
+ update 
+
+ Return/dispute
+ update 
+
+ Back-in-stock/price
+ alerts later 
+
+ Verification
+ status 
+
+ Channels may include in-app, push, email
+and selected SMS notifications for critical events. 
+
+### H1: 30. Favorites and Saved Items 
+
+ · 
+ Save markets 
+
+ · 
+ Save shops 
+
+ · 
+ Save products 
+
+ · 
+ Future: price-change alerts 
+
+ · 
+ Future: back-in-stock alerts 
+
+ · 
+ Future: shop promotions and new-item alerts 
+
+### H1: 31. Analytics 
+
+### H2: 31.1 Seller Analytics 
+
+ · 
+ Shop views 
+
+ · 
+ Panorama hotspot views 
+
+ · 
+ Product views 
+
+ · 
+ Search appearances 
+
+ · 
+ Chats and offers 
+
+ · 
+ Offer conversion 
+
+ · 
+ Orders and revenue 
+
+ · 
+ Average order value 
+
+ · 
+ Repeat customers 
+
+ · 
+ Popular products 
+
+ · 
+ Rating trends 
+
+ · 
+ Fulfillment performance 
+
+### H2: 31.2 Platform / Market Analytics 
+
+ · 
+ Market visitors and virtual visits 
+
+ · 
+ Most searched products 
+
+ · 
+ Popular corridors and shops 
+
+ · 
+ Seller activation and claim rates 
+
+ · 
+ Transaction activity 
+
+ · 
+ Delivery activity 
+
+ · 
+ Navigation usage 
+
+### H1: 32. Administration and Audit Logging 
+
+ · 
+ User and seller management 
+
+ · 
+ Stall claim and reassignment 
+
+ · 
+ Product moderation 
+
+ · 
+ Payment/order monitoring 
+
+ · 
+ Review moderation 
+
+ · 
+ Returns/refunds/disputes 
+
+ · 
+ Fraud/risk case management 
+
+ · 
+ Panorama and navigation management 
+
+ · 
+ Market content management 
+
+ · 
+ Staff and role management 
+
+ Sensitive administrative actions should be
+recorded in tamper-resistant audit logs, including seller approvals, stall
+reassignment, payment-account changes, suspensions, review removals, refund
+decisions, dispute outcomes, product removals and identity-data access. 
+
+### H1: 33. Data Protection and Compliance 
+
+ MarketApp will process identities,
+government IDs, contact information, customer addresses, communications,
+transaction/payment metadata, location data and images. Nigerian legal and
+compliance review should be completed before launch. 
+
+ · 
+ Encryption in transit and appropriate encryption
+at rest 
+
+ · 
+ Role-based and least-privilege access 
+
+ · 
+ Secure identity-document storage 
+
+ · 
+ Data-retention policy 
+
+ · 
+ Account deletion and correction workflows 
+
+ · 
+ Privacy notices and consent records 
+
+ · 
+ Security monitoring and breach response 
+
+ · 
+ Marketplace terms and seller terms 
+
+ · 
+ Consumer protection, payments and refund rules 
+
+ · 
+ Image/privacy rights and market-association
+agreements 
+
+ · 
+ Product restrictions and intellectual-property
+rules 
+
+### H1: 34. Product Moderation 
+
+ · 
+ Define allowed, restricted and prohibited goods 
+
+ · 
+ Product reporting workflow 
+
+ · 
+ Warnings and listing removal 
+
+ · 
+ Seller restrictions and suspension 
+
+ · 
+ Appeals process 
+
+ · 
+ Category-specific compliance controls where
+required 
+
+### H1: 35. Recommended Technology Architecture 
+
+ Layer 
+
+ Recommended Technology 
+
+ Mobile 
+
+ React
+ Native + TypeScript 
+
+ Public
+ / Seller / Admin Web 
+
+ Next.js
+ + React + TypeScript 
+
+ Backend 
+
+ NestJS/Node.js
+ or FastAPI/Python 
+
+ Primary
+ Database 
+
+ PostgreSQL 
+
+ Spatial
+ Data 
+
+ PostGIS 
+
+ Indoor
+ Routing 
+
+ pgRouting
+ or custom graph service 
+
+ Search 
+
+ OpenSearch 
+
+ Cache 
+
+ Redis 
+
+ Real-Time
+ Messaging 
+
+ WebSockets 
+
+ Object
+ Storage 
+
+ S3-compatible
+ storage 
+
+ Image
+ Delivery 
+
+ CDN 
+
+ Background
+ Jobs 
+
+ SQS,
+ RabbitMQ or equivalent queue 
+
+ Notifications 
+
+ Firebase
+ Cloud Messaging, APNs, email/SMS provider 
+
+### H1: 36. Core Backend Services 
+
+ · 
+ API Gateway 
+
+ · 
+ Authentication Service 
+
+ · 
+ Market Service 
+
+ · 
+ Navigation Service 
+
+ · 
+ Imagery Service 
+
+ · 
+ Seller/Business Service 
+
+ · 
+ Catalog Service 
+
+ · 
+ Search Service 
+
+ · 
+ Chat Service 
+
+ · 
+ Offer/Negotiation Service 
+
+ · 
+ Order Service 
+
+ · 
+ Payment Service 
+
+ · 
+ Fulfillment Service 
+
+ · 
+ Rating Service 
+
+ · 
+ Dispute Service 
+
+ · 
+ Risk Service 
+
+ · 
+ Notification Service 
+
+ · 
+ Administration Service 
+
+### H1: 37. Core Data Entities 
+
+ Entity 
+
+ Entity 
+
+ Entity 
+
+ User 
+
+ UserRole 
+
+ UserDevice 
+
+ SellerIdentity 
+
+ Business 
+
+ Market 
+
+ MarketAssociation 
+
+ MarketZone 
+
+ MarketFloor 
+
+ Stall 
+
+ StallClaim 
+
+ StallRole 
+
+ StallVerification 
+
+ Panorama 
+
+ PanoramaVersion 
+
+ PanoramaConnection 
+
+ NavigationNode 
+
+ NavigationEdge 
+
+ Amenity 
+
+ ShopCategory 
+
+ PlatformCategory 
+
+ Product 
+
+ ProductVariant 
+
+ Inventory 
+
+ Conversation 
+
+ ConversationParticipant 
+
+ Message 
+
+ Offer 
+
+ OfferHistory 
+
+ Cart 
+
+ Order 
+
+ OrderItem 
+
+ Payment 
+
+ PaymentSplit 
+
+ Settlement 
+
+ Shipment 
+
+ Courier 
+
+ PickupConfirmation 
+
+ DeliveryConfirmation 
+
+ Review 
+
+ ReviewResponse 
+
+ Return 
+
+ Refund 
+
+ Dispute 
+
+ RiskEvent 
+
+ ModerationCase 
+
+ Notification 
+
+ AuditLog 
+
+### H1: 38. MVP Rollout Plan 
+
+ Phase 
+
+ Scope 
+
+ Primary Goal 
+
+ Phase
+ 1  Market Digitization 
+
+ One
+ Lagos market; 200300 stalls; routing graph; 360° imagery; QR positioning;
+ shop search; admin tools 
+
+ Prove
+ market mapping and navigation 
+
+ Phase
+ 2  Seller Commerce 
+
+ 50
+ active sellers; 5001,500 products; shop claims; KYC; catalogs; chat;
+ make-offer; structured negotiation 
+
+ Prove
+ seller onboarding and engagement 
+
+ Phase
+ 3  Transactions 
+
+ Checkout;
+ payment provider; seller settlement; pickup codes; local delivery; ratings;
+ disputes 
+
+ Prove
+ trusted commerce and fulfillment 
+
+ Phase
+ 4  Lagos Expansion 
+
+ Additional
+ markets; logistics partners; stronger search, fraud controls and indoor
+ positioning 
+
+ Prove
+ repeatable scaling across market types 
+
+ Phase
+ 5  National Expansion 
+
+ Multiple
+ states/cities, many markets, large catalog and imagery volumes 
+
+ Scale
+ the operating model nationally 
+
+### H1: 39. Features Deferred from Initial MVP 
+
+ · 
+ MarketApp stored-value wallet 
+
+ · 
+ Buy Now Pay Later / consumer lending 
+
+ · 
+ International payments and shipping 
+
+ · 
+ Proprietary courier fleet 
+
+ · 
+ Auctions 
+
+ · 
+ Multi-shop checkout 
+
+ · 
+ Live-stream shopping 
+
+ · 
+ Video calling 
+
+ · 
+ AI shopping agents 
+
+ · 
+ Full accounting/ERP suite 
+
+ · 
+ Cryptocurrency 
+
+ · 
+ Loyalty points and complex subscriptions 
+
+### H1: 40. Core Customer Journey 
+
+ 9. Open MarketApp 
+
+ 10. Choose market from list or Lagos map 
+
+ 11. Enter market 
+
+ 12. Search, browse categories or explore 360° 
+
+ 13. Find or discover a shop 
+
+ 14. View shop profile, verification and public rating 
+
+ 15. Browse products 
+
+ 16. Chat or make an offer 
+
+ 17. Negotiate and agree on price 
+
+ 18. Accept formal offer / buy at listed price 
+
+ 19. Pay 
+
+ 20. Select pickup or delivery 
+
+ 21. Complete transaction 
+
+ 22. Rate the shop 
+
+### H1: 41. Core Seller Journey 
+
+ 23. Create user account 
+
+ 24. Verify unique email and phone 
+
+ 25. Locate physical stall 
+
+ 26. Claim stall 
+
+ 27. Complete seller identity and stall verification 
+
+ 28. Connect approved settlement information 
+
+ 29. Create/maintain shop profile 
+
+ 30. Create shop categories 
+
+ 31. Add products and set prices/negotiability 
+
+ 32. Receive chats and offers 
+
+ 33. Negotiate and send formal offers 
+
+ 34. Receive confirmed orders/payment 
+
+ 35. Prepare and fulfill by pickup or shipment 
+
+ 36. Complete transaction 
+
+ 37. Rate customer 
+
+### H1: 42. Product Differentiator 
+
+ Physical
+ Market Mapping + Proprietary 360° Navigation + Verified Physical Shops +
+ Shop-Specific Digital Catalogs + Traditional Price Negotiation + Digital
+ Payments + Pickup/Delivery + Transaction-Based Reputation 
+
+ MarketApp should preserve the feel of a
+real market experience: a customer can enter a Nigerian market from a phone,
+walk through it virtually, discover a stall, speak directly with the trader,
+haggle, purchase and receive the item without losing the character of the
+physical marketplace. 
+
+### H1: 43. Initial Success Metrics 
+
+ · 
+ Markets digitized 
+
+ · 
+ Percentage of stalls mapped 
+
+ · 
+ Percentage of stalls claimed 
+
+ · 
+ Claim-verification success rate 
+
+ · 
+ Active sellers 
+
+ · 
+ Products listed 
+
+ · 
+ Monthly active customers 
+
+ · 
+ Shop and product searches 
+
+ · 
+ 360° navigation sessions 
+
+ · 
+ Navigation-to-shop completion 
+
+ · 
+ Chats initiated 
+
+ · 
+ Offers created and acceptance rate 
+
+ · 
+ Orders completed 
+
+ · 
+ Gross merchandise value 
+
+ · 
+ Average order value 
+
+ · 
+ Payment success rate 
+
+ · 
+ Delivery success rate 
+
+ · 
+ Dispute and refund rates 
+
+ · 
+ Seller retention 
+
+ · 
+ Customer repeat-purchase rate 
+
+ · 
+ Average seller/customer ratings 
+
+ · 
+ Cost to digitize each stall 
+
+ · 
+ Cost to onboard each active seller 
+
+### H1: 44. Final Product Definition 
+
+ MarketApp
+ is a digital platform for discovering, navigating and transacting with
+ verified physical market stalls. Customers can virtually walk through
+ participating markets using proprietary 360° imagery, find shops and
+ products, communicate and negotiate directly with traders, make digital
+ purchases, arrange pickup or delivery, and build transaction-based
+ reputations for both buyers and sellers. 
+
+ This document is intended as the
+consolidated baseline for UX/UI design, technical architecture, database
+modeling, API specification, security/compliance planning, development
+estimation and phased implementation.

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
+    "@expo/vector-icons": "^15.1.1",
     "@marketapp/api-client": "workspace:*",
     "@marketapp/types": "workspace:*",
     "expo": "~57.0.27",
@@ -11,6 +12,7 @@
     "react-native": "0.86.3"
   },
   "devDependencies": {
+    "@expo/ngrok": "^4.1.0",
     "@types/react": "~19.2.2",
     "typescript": "~6.0.3"
   },

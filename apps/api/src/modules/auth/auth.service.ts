@@ -63,8 +63,19 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
-    const email = dto.email.toLowerCase().trim();
-    const user = await this.userRepo.findOne({ where: { email } });
+    const identifier = dto.email.trim();
+    let user: UserEntity | null = null;
+
+    if (identifier.includes('@')) {
+      user = await this.userRepo.findOne({
+        where: { email: identifier.toLowerCase() },
+      });
+    } else {
+      const normalizedPhone = this.normalizePhone(identifier);
+      user = await this.userRepo.findOne({
+        where: { phone: normalizedPhone },
+      });
+    }
 
     if (!user || !(await bcrypt.compare(dto.password, user.passwordHash))) {
       throw new UnauthorizedException('Invalid email or password');

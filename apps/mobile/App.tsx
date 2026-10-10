@@ -30,12 +30,16 @@ import {
   formatNGN,
   isMarketOpen,
 } from '@marketapp/api-client';
+import { Ionicons } from '@expo/vector-icons';
+
+import AuthScreen from './AuthScreen';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 type Screen =
   | 'splash'
   | 'onboarding'
+  | 'auth'
   | 'markets'
   | 'market-detail'
   | 'shop-directory'
@@ -48,6 +52,7 @@ type Screen =
   | 'notifications'
   | 'wishlist'
   | 'settings';
+type Category = 'All' | 'Electronics' | 'Textiles' | 'Spices' | 'Mobile';
 
 type MarketType = typeof MOCK_MARKETS[0];
 type ProductType = typeof MOCK_PRODUCTS[0];
@@ -180,6 +185,8 @@ export default function App() {
   const [userName, setUserName] = useState(MOCK_USERS[0]!.fullName);
   const [userPhone, setUserPhone] = useState(MOCK_USERS[0]!.phone);
   const [userEmail, setUserEmail] = useState(MOCK_USERS[0]!.email);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState<'shopper' | 'seller'>('shopper');
 
   // 360 Panorama state
   const [currentPanoIndex, setCurrentPanoIndex] = useState(0);
@@ -213,7 +220,14 @@ export default function App() {
     }
   }, [currentScreen]);
 
-  // Android Hardware Back Button
+  // Mandatory Auth Gate: Cannot skip or enter app without logging in
+  useEffect(() => {
+    if (!isLoggedIn && currentScreen !== 'splash' && currentScreen !== 'onboarding' && currentScreen !== 'auth') {
+      setCurrentScreen('auth');
+    }
+  }, [isLoggedIn, currentScreen]);
+
+  // Android Hardware Back Button Handling
   useEffect(() => {
     const onBackPress = () => {
       if (showHaggleModal) { setShowHaggleModal(false); return true; }
@@ -235,15 +249,22 @@ export default function App() {
         setCurrentScreen(backMap[currentScreen]!);
         return true;
       }
+      if (!isLoggedIn) {
+        if (currentScreen === 'auth') {
+          return true; // Mandatory auth - cannot escape
+        }
+        setCurrentScreen('auth');
+        return true;
+      }
       if (currentScreen !== 'markets' && currentScreen !== 'splash' && currentScreen !== 'onboarding') {
         setCurrentScreen('markets');
         return true;
       }
       return false;
     };
-    const bh = BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    return () => bh.remove();
-  }, [currentScreen, showHaggleModal, showShopSheet]);
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', onBackPress);
+    return () => backHandler.remove();
+  }, [currentScreen, showHaggleModal, showShopSheet, isLoggedIn]);
 
   // 360 pan responder
   const panResponder = PanResponder.create({
@@ -320,7 +341,7 @@ export default function App() {
       <StatusBar barStyle="light-content" backgroundColor="#0D0F1A" translucent={false} />
 
       {/* ─── App Header ─────────────────────────────────────────── */}
-      {currentScreen !== 'splash' && currentScreen !== 'onboarding' && (
+      {currentScreen !== 'splash' && currentScreen !== 'onboarding' && currentScreen !== 'auth' && (
         <View style={styles.header}>
           <View style={styles.headerTitleRow}>
             <TouchableOpacity
@@ -338,6 +359,29 @@ export default function App() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <TouchableOpacity style={styles.cityBadge} onPress={() => navigate('map')}>
                 <Text style={styles.cityBadgeText}>🇳🇬 Map</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[
+                  styles.cityBadge,
+                  {
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 4,
+                    backgroundColor: isLoggedIn ? 'rgba(0, 212, 170, 0.15)' : 'rgba(255, 107, 53, 0.15)',
+                    borderColor: isLoggedIn ? 'rgba(0, 212, 170, 0.3)' : 'rgba(255, 107, 53, 0.3)',
+                  },
+                ]}
+                onPress={() => setCurrentScreen('auth')}
+              >
+                <Ionicons
+                  name={isLoggedIn ? 'person-circle-outline' : 'log-in-outline'}
+                  size={14}
+                  color={isLoggedIn ? '#00D4AA' : '#FF6B35'}
+                />
+                <Text style={[styles.cityBadgeText, { color: isLoggedIn ? '#00D4AA' : '#FF6B35' }]}>
+                  {isLoggedIn ? userName.split(' ')[0] : 'Sign In'}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -414,8 +458,10 @@ export default function App() {
                   Market<Text style={{ color: '#FF6B35' }}>App</Text>
                 </Text>
               </View>
-              <TouchableOpacity onPress={() => navigate('markets')}>
-                <Text style={{ color: '#9BA5C9', fontWeight: '700', fontSize: 14 }}>Skip →</Text>
+              <TouchableOpacity onPress={() => navigate(isLoggedIn ? 'markets' : 'auth')}>
+                <Text style={{ color: '#FF6B35', fontWeight: '700', fontSize: 14 }}>
+                  {isLoggedIn ? 'Skip →' : 'Skip to Sign In →'}
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -440,12 +486,30 @@ export default function App() {
                   <Text style={styles.onboardingNextBtnText}>Next  →</Text>
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity style={styles.onboardingStartBtn} onPress={() => navigate('markets')}>
-                  <Text style={styles.onboardingStartBtnText}>Explore Nigerian Markets 🚀</Text>
+                <TouchableOpacity
+                  style={styles.onboardingStartBtn}
+                  onPress={() => navigate(isLoggedIn ? 'markets' : 'auth')}
+                >
+                  <Text style={styles.onboardingStartBtnText}>
+                    {isLoggedIn ? 'Explore Nigerian Markets 🚀' : 'Sign In / Create Account →'}
+                  </Text>
                 </TouchableOpacity>
               )}
             </View>
           </View>
+        )}
+
+        {/* ─── Screen: Auth (Sign In / Register / OTP) ─────────────── */}
+        {currentScreen === 'auth' && (
+          <AuthScreen
+            onSuccess={(user) => {
+              setUserName(user.name);
+              setUserPhone(user.phone);
+              setUserRole(user.role);
+              setIsLoggedIn(true);
+              setCurrentScreen('markets');
+            }}
+          />
         )}
 
         {/* ── Markets Home ────────────────────────────────────────── */}
@@ -1714,6 +1778,27 @@ export default function App() {
                   <Text style={{ color: '#00D4AA', fontWeight: '800' }}>Change ›</Text>
                 </TouchableOpacity>
               </View>
+
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  backgroundColor: 'rgba(255, 107, 53, 0.12)',
+                  borderWidth: 1,
+                  borderColor: 'rgba(255, 107, 53, 0.3)',
+                  borderRadius: 10,
+                  padding: 12,
+                  marginTop: 12,
+                }}
+                onPress={() => setCurrentScreen('auth')}
+              >
+                <Ionicons name="swap-horizontal" size={16} color="#FF6B35" />
+                <Text style={{ color: '#FF6B35', fontWeight: '800', fontSize: 13 }}>
+                  {isLoggedIn ? 'Switch Account / Re-authenticate' : 'Sign In or Create Verified Account'}
+                </Text>
+              </TouchableOpacity>
             </View>
 
             {/* Security & Payments */}
@@ -1768,7 +1853,7 @@ export default function App() {
       </View>
 
       {/* ─── Bottom Tab Bar ──────────────────────────────────────── */}
-      {currentScreen !== 'splash' && currentScreen !== 'onboarding' && (
+      {currentScreen !== 'splash' && currentScreen !== 'onboarding' && currentScreen !== 'auth' && (
         <View style={styles.bottomTabBar}>
           {[
             { key: 'markets', label: 'Markets', icon: '🏪' },

@@ -5,6 +5,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 
+import { HealthModule } from './modules/health/health.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { MarketsModule } from './modules/markets/markets.module';
@@ -46,7 +47,7 @@ import { AuditModule } from './modules/audit/audit.module';
         database: config.get('DB_NAME', 'marketapp'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
-        synchronize: config.get('NODE_ENV') === 'development',
+        synchronize: false,
         logging: config.get('DB_LOGGING') === 'true',
         extra: {
           max: 20,
@@ -69,6 +70,7 @@ import { AuditModule } from './modules/audit/audit.module';
     ScheduleModule.forRoot(),
 
     // Feature modules
+    HealthModule,
     AuthModule,
     UsersModule,
     MarketsModule,
